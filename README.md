@@ -1,337 +1,849 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ff7900">
-  <meta name="description" content="Study AI — aprende, joga e estuda gratuitamente.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study AI</title>
 
-  <title>Study AI</title>
+<style>
+*{box-sizing:border-box}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#101010;
+    color:white;
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:240px;
+    background:#080808;
+    border-right:1px solid #292929;
+    padding:20px 14px;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#ff7900;
+    margin:8px 12px 25px;
+}
+
+.free{
+    display:block;
+    text-align:center;
+    background:#ff7900;
+    color:#111;
+    padding:9px;
+    border-radius:10px;
+    font-weight:bold;
+    margin:0 10px 18px;
+}
+
+nav button{
+    width:100%;
+    border:0;
+    background:none;
+    color:#ddd;
+    text-align:left;
+    padding:13px;
+    border-radius:10px;
+    margin:2px 0;
+    cursor:pointer;
+    font-size:15px;
+}
+
+nav button:hover,
+nav button.active{
+    background:#24160b;
+    color:#ff8500;
+}
+
+.main{
+    margin-left:240px;
+    width:calc(100% - 240px);
+    padding:30px;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+h1{
+    margin-top:0;
+    font-size:32px;
+}
+
+.sub{
+    color:#aaa;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:#191919;
+    border:1px solid #2b2b2b;
+    border-radius:16px;
+    padding:20px;
+}
+
+.card h3{
+    margin-top:0;
+}
+
+.card p{
+    color:#aaa;
+    line-height:1.5;
+}
+
+.btn{
+    display:inline-block;
+    border:0;
+    border-radius:10px;
+    padding:11px 15px;
+    background:#ff7900;
+    color:#111;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.btn.secondary{
+    background:#292929;
+    color:white;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    background:#101010;
+    color:white;
+    border:1px solid #333;
+    border-radius:10px;
+    margin:8px 0 15px;
+}
+
+.stat{
+    font-size:32px;
+    color:#ff7900;
+    font-weight:bold;
+}
+
+.progress{
+    height:12px;
+    background:#292929;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress div{
+    height:100%;
+    width:0%;
+    background:#ff7900;
+}
+
+.challenge{
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.music-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.note{
+    color:#888;
+    font-size:13px;
+    line-height:1.5;
+}
+
+@media(max-width:700px){
+    .sidebar{
+        width:75px;
     }
 
-    body {
-      background: #0b0b0b;
-      color: white;
-      min-height: 100vh;
+    .logo{
+        font-size:0;
+        text-align:center;
     }
 
-    header {
-      background: linear-gradient(135deg, #ff7900, #ff4500);
-      padding: 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .logo:after{
+        content:"AI";
+        font-size:22px;
     }
 
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
+    .free{
+        font-size:0;
     }
 
-    .free {
-      background: #111;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 13px;
+    .free:after{
+        content:"✓";
+        font-size:16px;
     }
 
-    main {
-      max-width: 1000px;
-      margin: auto;
-      padding: 25px;
+    nav button{
+        font-size:0;
+        text-align:center;
     }
 
-    .welcome {
-      margin-bottom: 25px;
+    .main{
+        margin-left:75px;
+        width:calc(100% - 75px);
+        padding:18px;
     }
-
-    .welcome h1 {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .welcome p {
-      color: #bbb;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #171717;
-      border: 1px solid #292929;
-      border-radius: 18px;
-      padding: 22px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #ff7900;
-    }
-
-    .icon {
-      font-size: 35px;
-      margin-bottom: 12px;
-    }
-
-    .card h2 {
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      color: #aaa;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    button {
-      border: none;
-      background: #ff7900;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 15px;
-    }
-
-    button:hover {
-      background: #ff8c26;
-    }
-
-    .screen {
-      display: none;
-      background: #151515;
-      border-radius: 18px;
-      padding: 25px;
-      margin-top: 20px;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    .back {
-      background: #292929;
-      margin-bottom: 20px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      background: #222;
-      color: white;
-      border: 1px solid #444;
-      border-radius: 10px;
-    }
-
-    .question {
-      font-size: 22px;
-      margin: 20px 0;
-    }
-
-    footer {
-      text-align: center;
-      color: #777;
-      padding: 35px 20px;
-      font-size: 13px;
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">🟠 Study AI</div>
-  <div class="free">100% GRATUITO</div>
-</header>
+<aside class="sidebar">
 
-<main>
+<div class="logo">Study AI</div>
 
-  <section class="welcome">
-    <h1>Olá! 👋</h1>
-    <p>Aprende, pratica e diverte-te com o Study AI.</p>
-  </section>
+<div class="free">🆓 100% GRÁTIS</div>
 
-  <div class="grid">
+<nav>
 
-    <div class="card" onclick="openScreen('study')">
-      <div class="icon">📚</div>
-      <h2>Estudar</h2>
-      <p>Escolhe a disciplina e o teu ano de escolaridade.</p>
-    </div>
+<button class="active" onclick="showSection('inicio',this)">
+🏠 Início
+</button>
 
-    <div class="card" onclick="openScreen('challenge')">
-      <div class="icon">🎮</div>
-      <h2>Desafios</h2>
-      <p>Responde a perguntas e testa os teus conhecimentos.</p>
-    </div>
+<button onclick="showSection('progresso',this)">
+📊 Progresso
+</button>
 
-    <div class="card" onclick="openScreen('ai')">
-      <div class="icon">🤖</div>
-      <h2>Study AI</h2>
-      <p>Faz perguntas e recebe ajuda para estudar.</p>
-    </div>
+<button onclick="showSection('estudar',this)">
+📚 Estudar
+</button>
 
-    <div class="card" onclick="openScreen('music')">
-      <div class="icon">🎵</div>
-      <h2>Música</h2>
-      <p>Estuda com música de fundo.</p>
-    </div>
+<button onclick="showSection('desafios',this)">
+🎮 Desafios
+</button>
 
-    <div class="card" onclick="openScreen('settings')">
-      <div class="icon">⚙️</div>
-      <h2>Definições</h2>
-      <p>Personaliza o Study AI.</p>
-    </div>
+<button onclick="showSection('ai',this)">
+🤖 Study AI
+</button>
 
-  </div>
+<button onclick="showSection('musica',this)">
+🎵 Música
+</button>
 
-  <section id="study" class="screen">
-    <button class="back" onclick="closeScreens()">← Voltar</button>
-    <h2>📚 Estudar</h2>
+<button onclick="showSection('settings',this)">
+⚙️ Settings
+</button>
 
-    <label>Ano de escolaridade</label>
-    <select>
-      <option>1.º ano</option>
-      <option>2.º ano</option>
-      <option>3.º ano</option>
-      <option>4.º ano</option>
-      <option>5.º ano</option>
-      <option>6.º ano</option>
-      <option selected>8.º ano</option>
-      <option>9.º ano</option>
-      <option>10.º ano</option>
-      <option>11.º ano</option>
-      <option>12.º ano</option>
-    </select>
+</nav>
+</aside>
 
-    <label>Disciplina</label>
-    <select>
-      <option>Matemática</option>
-      <option>Português</option>
-      <option>Ciências</option>
-      <option>Físico-Química</option>
-      <option>História</option>
-      <option>Geografia</option>
-      <option>Inglês</option>
-      <option>Espanhol</option>
-    </select>
 
-    <button onclick="alert('Vamos começar a estudar! 📚')">
-      Começar
-    </button>
-  </section>
+<main class="main">
 
-  <section id="challenge" class="screen">
-    <button class="back" onclick="closeScreens()">← Voltar</button>
+<!-- INÍCIO -->
 
-    <h2>🎮 Desafio</h2>
+<section id="inicio" class="section active">
 
-    <div class="question">
-      Quanto é 8 × 7?
-    </div>
+<h1>Olá! 👋</h1>
 
-    <button onclick="alert('✅ Correto!')">56</button>
-    <button onclick="alert('❌ Tenta novamente!')">54</button>
-    <button onclick="alert('❌ Tenta novamente!')">64</button>
-  </section>
+<p class="sub">
+Bem-vindo ao Study AI — a tua aplicação de estudo.
+</p>
 
-  <section id="ai" class="screen">
-    <button class="back" onclick="closeScreens()">← Voltar</button>
+<div class="grid">
 
-    <h2>🤖 Study AI</h2>
+<div class="card">
+<h3>📚 Estudar</h3>
+<p>
+Escolhe o teu ano e começa a estudar as tuas disciplinas.
+</p>
+<button class="btn" onclick="showSection('estudar')">
+Começar
+</button>
+</div>
 
-    <p style="margin-top:10px;color:#aaa;">
-      Escreve uma pergunta sobre a matéria que estás a estudar.
-    </p>
+<div class="card">
+<h3>🎮 Desafios</h3>
+<p>
+Resolve perguntas e ganha pontos.
+</p>
+<button class="btn" onclick="showSection('desafios')">
+Jogar
+</button>
+</div>
 
-    <input id="questionInput" placeholder="Ex.: Explica-me as frações...">
+<div class="card">
+<h3>🤖 Study AI</h3>
+<p>
+Faz perguntas e usa o espaço de ajuda ao estudo.
+</p>
+<button class="btn" onclick="showSection('ai')">
+Abrir
+</button>
+</div>
 
-    <button onclick="askAI()">Perguntar</button>
+<div class="card">
+<h3>🎵 Música</h3>
+<p>
+Encontra música para estudar.
+</p>
+<button class="btn" onclick="showSection('musica')">
+Abrir biblioteca
+</button>
+</div>
 
-    <p id="answer" style="margin-top:20px;"></p>
-  </section>
+</div>
+</section>
 
-  <section id="music" class="screen">
-    <button class="back" onclick="closeScreens()">← Voltar</button>
 
-    <h2>🎵 Música para estudar</h2>
+<!-- PROGRESSO -->
 
-    <p style="margin-top:10px;color:#aaa;">
-      Música para te ajudar a concentrar.
-    </p>
+<section id="progresso" class="section">
 
-    <button onclick="alert('🎵 Música iniciada!')">
-      ▶️ Começar música
-    </button>
-  </section>
+<h1>📊 Progresso</h1>
 
-  <section id="settings" class="screen">
-    <button class="back" onclick="closeScreens()">← Voltar</button>
+<p class="sub">
+Acompanha o teu progresso no Study AI.
+</p>
 
-    <h2>⚙️ Definições</h2>
+<div class="grid">
 
-    <label>Idioma</label>
-    <select>
-      <option>Português (Portugal)</option>
-      <option>English</option>
-      <option>Español</option>
-      <option>Français</option>
-    </select>
+<div class="card">
+<h3>Pontos</h3>
+<div class="stat" id="points">0</div>
+</div>
 
-    <p style="margin-top:25px;color:#aaa;">
-      💰 O Study AI é totalmente gratuito.
-    </p>
-  </section>
+<div class="card">
+<h3>Desafios concluídos</h3>
+<div class="stat" id="done">0</div>
+</div>
+
+<div class="card">
+<h3>Nível</h3>
+<div class="stat" id="level">1</div>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:18px">
+
+<h3>Próximo nível</h3>
+
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ESTUDAR -->
+
+<section id="estudar" class="section">
+
+<h1>📚 Estudar</h1>
+
+<p class="sub">
+Escolhe o teu ano e a disciplina.
+</p>
+
+<div class="card">
+
+<label>Ano de escolaridade</label>
+
+<select id="year">
+
+<option>1.º ano</option>
+<option>2.º ano</option>
+<option>3.º ano</option>
+<option>4.º ano</option>
+<option>5.º ano</option>
+<option>6.º ano</option>
+<option>7.º ano</option>
+<option selected>8.º ano</option>
+<option>9.º ano</option>
+<option>10.º ano</option>
+<option>11.º ano</option>
+<option>12.º ano</option>
+
+</select>
+
+
+<label>Disciplina</label>
+
+<select id="subject">
+
+<option>Matemática</option>
+<option>Português</option>
+<option>Ciências Naturais</option>
+<option>Físico-Química</option>
+<option>História</option>
+<option>Geografia</option>
+<option>Inglês</option>
+<option>Espanhol</option>
+
+</select>
+
+<button class="btn" onclick="startStudy()">
+Começar a estudar
+</button>
+
+<p id="studyMessage" class="sub"></p>
+
+</div>
+
+</section>
+
+
+<!-- DESAFIOS -->
+
+<section id="desafios" class="section">
+
+<h1>🎮 Desafios</h1>
+
+<p class="sub">
+Responde corretamente para ganhar pontos.
+</p>
+
+<div class="card">
+
+<div class="challenge">
+Quanto é 8 × 7?
+</div>
+
+<input
+id="answer"
+type="number"
+placeholder="Escreve a resposta">
+
+<button class="btn" onclick="checkAnswer()">
+Responder
+</button>
+
+<p id="result"></p>
+
+</div>
+
+</section>
+
+
+<!-- STUDY AI -->
+
+<section id="ai" class="section">
+
+<h1>🤖 Study AI</h1>
+
+<p class="sub">
+O teu assistente de estudo.
+</p>
+
+<div class="card">
+
+<input
+id="question"
+placeholder="Escreve a tua pergunta...">
+
+<button class="btn" onclick="askAI()">
+Perguntar
+</button>
+
+<p id="aiResponse" class="sub"></p>
+
+<p class="note">
+A interface está preparada para receber uma ligação a um serviço de IA real.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- MÚSICA -->
+
+<section id="musica" class="section">
+
+<h1>🎵 Biblioteca de Música</h1>
+
+<p class="sub">
+Música para estudar, concentrar e relaxar.
+</p>
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>🎧 Study Music</h3>
+
+<p>
+Música para concentração e estudo.
+</p>
+
+<div class="music-buttons">
+
+<a
+class="btn"
+target="_blank"
+href="https://pixabay.com/music/search/study%20music/">
+▶️ Ouvir
+</a>
+
+<a
+class="btn secondary"
+target="_blank"
+href="https://pixabay.com/music/search/study%20music/">
+⬇️ Descarregar
+</a>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🎹 Piano Study</h3>
+
+<p>
+Piano calmo para estudar.
+</p>
+
+<div class="music-buttons">
+
+<a
+class="btn"
+target="_blank"
+href="https://pixabay.com/music/search/piano%20study/">
+▶️ Ouvir
+</a>
+
+<a
+class="btn secondary"
+target="_blank"
+href="https://pixabay.com/music/search/piano%20study/">
+⬇️ Descarregar
+</a>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🌙 Lofi Study</h3>
+
+<p>
+Lofi para concentração.
+</p>
+
+<div class="music-buttons">
+
+<a
+class="btn"
+target="_blank"
+href="https://pixabay.com/music/search/lofi%20study/">
+▶️ Ouvir
+</a>
+
+<a
+class="btn secondary"
+target="_blank"
+href="https://pixabay.com/music/search/lofi%20study/">
+⬇️ Descarregar
+</a>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>📖 Study Session</h3>
+
+<p>
+Música para uma sessão de estudo.
+</p>
+
+<div class="music-buttons">
+
+<a
+class="btn"
+target="_blank"
+href="https://pixabay.com/music/search/study%20session/">
+▶️ Ouvir
+</a>
+
+<a
+class="btn secondary"
+target="_blank"
+href="https://pixabay.com/music/search/study%20session/">
+⬇️ Descarregar
+</a>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🎷 Jazz Study</h3>
+
+<p>
+Jazz instrumental para estudar.
+</p>
+
+<div class="music-buttons">
+
+<a
+class="btn"
+target="_blank"
+href="https://pixabay.com/music/search/jazz%20study/">
+▶️ Ouvir
+</a>
+
+<a
+class="btn secondary"
+target="_blank"
+href="https://pixabay.com/music/search/jazz%20study/">
+⬇️ Descarregar
+</a>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🌧️ Rain Music</h3>
+
+<p>
+Sons de chuva e ambiente.
+</p>
+
+<div class="music-buttons">
+
+<a
+class="btn"
+target="_blank"
+href="https://pixabay.com/music/search/rain%20music/">
+▶️ Ouvir
+</a>
+
+<a
+class="btn secondary"
+target="_blank"
+href="https://pixabay.com/music/search/rain%20music/">
+⬇️ Descarregar
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<p class="note">
+Os botões abrem a biblioteca correspondente. Escolhe uma faixa e confirma a licença apresentada para essa faixa antes de a utilizares dentro da aplicação.
+</p>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settings" class="section">
+
+<h1>⚙️ Settings</h1>
+
+<div class="card">
+
+<h3>Definições do Study AI</h3>
+
+<p>
+O Study AI está configurado como aplicação gratuita.
+</p>
+
+<button class="btn secondary" onclick="resetProgress()">
+Repor progresso
+</button>
+
+</div>
+
+</section>
 
 </main>
 
-<footer>
-  Study AI © 2026 — Estudar pode ser divertido 🚀
-</footer>
 
 <script>
-  function openScreen(id) {
-    closeScreens();
-    document.getElementById(id).classList.add("active");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
 
-  function closeScreens() {
-    document.querySelectorAll(".screen").forEach(screen => {
-      screen.classList.remove("active");
-    });
-  }
+let data = JSON.parse(
+localStorage.getItem("studyAI") ||
+'{"points":0,"done":0}'
+);
 
-  function askAI() {
-    const question = document.getElementById("questionInput").value;
-    const answer = document.getElementById("answer");
 
-    if (!question.trim()) {
-      answer.innerText = "Escreve primeiro uma pergunta. 🙂";
-      return;
-    }
+function save(){
 
-    answer.innerText =
-      "🤖 Recebi a tua pergunta! A IA do Study AI será ligada ao sistema de inteligência artificial para responder de forma completa.";
-  }
+localStorage.setItem(
+"studyAI",
+JSON.stringify(data)
+);
+
+updateProgress();
+
+}
+
+
+function updateProgress(){
+
+document.getElementById("points").textContent =
+data.points;
+
+document.getElementById("done").textContent =
+data.done;
+
+let level =
+Math.floor(data.points / 100) + 1;
+
+document.getElementById("level").textContent =
+level;
+
+let progress =
+data.points % 100;
+
+document.getElementById("progressBar").style.width =
+progress + "%";
+
+}
+
+
+function showSection(id,button){
+
+document
+.querySelectorAll(".section")
+.forEach(section =>
+section.classList.remove("active")
+);
+
+document
+.getElementById(id)
+.classList.add("active");
+
+document
+.querySelectorAll("nav button")
+.forEach(btn =>
+btn.classList.remove("active")
+);
+
+if(button){
+button.classList.add("active");
+}
+
+window.scrollTo(0,0);
+
+}
+
+
+function startStudy(){
+
+let year =
+document.getElementById("year").value;
+
+let subject =
+document.getElementById("subject").value;
+
+document.getElementById("studyMessage").textContent =
+`Preparado para estudar ${subject} — ${year}.`;
+
+}
+
+
+function checkAnswer(){
+
+let answer =
+document.getElementById("answer").value;
+
+let result =
+document.getElementById("result");
+
+if(answer === "56"){
+
+result.textContent =
+"✅ Correto! Ganhaste 10 pontos!";
+
+data.points += 10;
+
+data.done += 1;
+
+save();
+
+}else{
+
+result.textContent =
+"❌ Não está correto. Tenta novamente!";
+
+}
+
+}
+
+
+function askAI(){
+
+let question =
+document.getElementById("question").value.trim();
+
+if(!question){
+
+document.getElementById("aiResponse").textContent =
+"Escreve primeiro uma pergunta.";
+
+return;
+
+}
+
+document.getElementById("aiResponse").textContent =
+`Pergunta recebida: "${question}". A ligação à IA real será adicionada nesta área.`;
+
+}
+
+
+function resetProgress(){
+
+data.points = 0;
+
+data.done = 0;
+
+save();
+
+alert("O progresso foi reposto.");
+
+}
+
+
+updateProgress();
+
 </script>
 
 </body>
 </html>
-```
