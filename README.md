@@ -3,211 +3,201 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff7900">
 <title>Study AI</title>
 
 <style>
 *{box-sizing:border-box}
 
 body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#101010;
-    color:white;
-    display:flex;
-    min-height:100vh;
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#101010;
+color:white;
+display:flex;
+min-height:100vh
 }
 
 .sidebar{
-    width:240px;
-    background:#080808;
-    border-right:1px solid #292929;
-    padding:20px 14px;
-    position:fixed;
-    top:0;
-    bottom:0;
-    left:0;
+width:240px;
+background:#080808;
+border-right:1px solid #292929;
+padding:20px 14px;
+position:fixed;
+top:0;
+bottom:0;
+left:0
 }
 
 .logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#ff7900;
-    margin:8px 12px 25px;
+font-size:28px;
+font-weight:bold;
+color:#ff7900;
+margin:8px 12px 25px
 }
 
 .free{
-    display:block;
-    text-align:center;
-    background:#ff7900;
-    color:#111;
-    padding:9px;
-    border-radius:10px;
-    font-weight:bold;
-    margin:0 10px 18px;
+display:block;
+text-align:center;
+background:#ff7900;
+color:#111;
+padding:9px;
+border-radius:10px;
+font-weight:bold;
+margin:0 10px 18px
 }
 
 nav button{
-    width:100%;
-    border:0;
-    background:none;
-    color:#ddd;
-    text-align:left;
-    padding:13px;
-    border-radius:10px;
-    margin:2px 0;
-    cursor:pointer;
-    font-size:15px;
+width:100%;
+border:0;
+background:none;
+color:#ddd;
+text-align:left;
+padding:13px;
+border-radius:10px;
+margin:2px 0;
+cursor:pointer;
+font-size:15px
 }
 
 nav button:hover,
 nav button.active{
-    background:#24160b;
-    color:#ff8500;
+background:#24160b;
+color:#ff8500
 }
 
 .main{
-    margin-left:240px;
-    width:calc(100% - 240px);
-    padding:30px;
+margin-left:240px;
+width:calc(100% - 240px);
+padding:30px
 }
 
-.section{
-    display:none;
-}
-
-.section.active{
-    display:block;
-}
+.section{display:none}
+.section.active{display:block}
 
 h1{
-    margin-top:0;
-    font-size:32px;
+margin-top:0;
+font-size:32px
 }
 
-.sub{
-    color:#aaa;
-}
+.sub{color:#aaa}
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px
 }
 
 .card{
-    background:#191919;
-    border:1px solid #2b2b2b;
-    border-radius:16px;
-    padding:20px;
+background:#191919;
+border:1px solid #2b2b2b;
+border-radius:16px;
+padding:20px
 }
 
-.card h3{
-    margin-top:0;
-}
+.card h3{margin-top:0}
 
 .card p{
-    color:#aaa;
-    line-height:1.5;
+color:#aaa;
+line-height:1.5
 }
 
 .btn{
-    display:inline-block;
-    border:0;
-    border-radius:10px;
-    padding:11px 15px;
-    background:#ff7900;
-    color:#111;
-    font-weight:bold;
-    cursor:pointer;
-    text-decoration:none;
+display:inline-block;
+border:0;
+border-radius:10px;
+padding:11px 15px;
+background:#ff7900;
+color:#111;
+font-weight:bold;
+cursor:pointer;
+text-decoration:none
 }
 
 .btn.secondary{
-    background:#292929;
-    color:white;
+background:#292929;
+color:white
 }
 
 input,select{
-    width:100%;
-    padding:12px;
-    background:#101010;
-    color:white;
-    border:1px solid #333;
-    border-radius:10px;
-    margin:8px 0 15px;
+width:100%;
+padding:12px;
+background:#101010;
+color:white;
+border:1px solid #333;
+border-radius:10px;
+margin:8px 0 15px
 }
 
 .stat{
-    font-size:32px;
-    color:#ff7900;
-    font-weight:bold;
+font-size:32px;
+color:#ff7900;
+font-weight:bold
 }
 
 .progress{
-    height:12px;
-    background:#292929;
-    border-radius:20px;
-    overflow:hidden;
+height:12px;
+background:#292929;
+border-radius:20px;
+overflow:hidden
 }
 
 .progress div{
-    height:100%;
-    width:0%;
-    background:#ff7900;
+height:100%;
+width:0%;
+background:#ff7900
 }
 
 .challenge{
-    font-size:24px;
-    font-weight:bold;
-    margin:20px 0;
+font-size:24px;
+font-weight:bold;
+margin:20px 0
 }
 
 .music-buttons{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+display:flex;
+gap:8px;
+flex-wrap:wrap
 }
 
 .note{
-    color:#888;
-    font-size:13px;
-    line-height:1.5;
+color:#888;
+font-size:13px;
+line-height:1.5
 }
 
 @media(max-width:700px){
-    .sidebar{
-        width:75px;
-    }
 
-    .logo{
-        font-size:0;
-        text-align:center;
-    }
+.sidebar{width:75px}
 
-    .logo:after{
-        content:"AI";
-        font-size:22px;
-    }
+.logo{
+font-size:0;
+text-align:center
+}
 
-    .free{
-        font-size:0;
-    }
+.logo:after{
+content:"AI";
+font-size:22px
+}
 
-    .free:after{
-        content:"✓";
-        font-size:16px;
-    }
+.free{font-size:0}
 
-    nav button{
-        font-size:0;
-        text-align:center;
-    }
+.free:after{
+content:"✓";
+font-size:16px
+}
 
-    .main{
-        margin-left:75px;
-        width:calc(100% - 75px);
-        padding:18px;
-    }
+nav button{
+font-size:0;
+text-align:center
+}
+
+.main{
+margin-left:75px;
+width:calc(100% - 75px);
+padding:18px
+}
+
 }
 </style>
 </head>
@@ -222,41 +212,25 @@ input,select{
 
 <nav>
 
-<button class="active" onclick="showSection('inicio',this)">
-🏠 Início
-</button>
+<button class="active" onclick="showSection('inicio',this)">🏠 Início</button>
 
-<button onclick="showSection('progresso',this)">
-📊 Progresso
-</button>
+<button onclick="showSection('progresso',this)">📊 Progresso</button>
 
-<button onclick="showSection('estudar',this)">
-📚 Estudar
-</button>
+<button onclick="showSection('estudar',this)">📚 Estudar</button>
 
-<button onclick="showSection('desafios',this)">
-🎮 Desafios
-</button>
+<button onclick="showSection('desafios',this)">🎮 Desafios</button>
 
-<button onclick="showSection('ai',this)">
-🤖 Study AI
-</button>
+<button onclick="showSection('ai',this)">🤖 Study AI</button>
 
-<button onclick="showSection('musica',this)">
-🎵 Música
-</button>
+<button onclick="showSection('musica',this)">🎵 Música</button>
 
-<button onclick="showSection('settings',this)">
-⚙️ Settings
-</button>
+<button onclick="showSection('settings',this)">⚙️ Settings</button>
 
 </nav>
+
 </aside>
 
-
 <main class="main">
-
-<!-- INÍCIO -->
 
 <section id="inicio" class="section active">
 
@@ -270,49 +244,30 @@ Bem-vindo ao Study AI — a tua aplicação de estudo.
 
 <div class="card">
 <h3>📚 Estudar</h3>
-<p>
-Escolhe o teu ano e começa a estudar as tuas disciplinas.
-</p>
-<button class="btn" onclick="showSection('estudar')">
-Começar
-</button>
+<p>Escolhe o teu ano e começa a estudar as tuas disciplinas.</p>
+<button class="btn" onclick="showSection('estudar')">Começar</button>
 </div>
 
 <div class="card">
 <h3>🎮 Desafios</h3>
-<p>
-Resolve perguntas e ganha pontos.
-</p>
-<button class="btn" onclick="showSection('desafios')">
-Jogar
-</button>
+<p>Resolve perguntas e ganha pontos.</p>
+<button class="btn" onclick="showSection('desafios')">Jogar</button>
 </div>
 
 <div class="card">
 <h3>🤖 Study AI</h3>
-<p>
-Faz perguntas e usa o espaço de ajuda ao estudo.
-</p>
-<button class="btn" onclick="showSection('ai')">
-Abrir
-</button>
+<p>Faz perguntas e usa o espaço de ajuda ao estudo.</p>
+<button class="btn" onclick="showSection('ai')">Abrir</button>
 </div>
 
 <div class="card">
 <h3>🎵 Música</h3>
-<p>
-Encontra música para estudar.
-</p>
-<button class="btn" onclick="showSection('musica')">
-Abrir biblioteca
-</button>
+<p>Encontra música para estudar.</p>
+<button class="btn" onclick="showSection('musica')">Abrir biblioteca</button>
 </div>
 
 </div>
 </section>
-
-
-<!-- PROGRESSO -->
 
 <section id="progresso" class="section">
 
@@ -353,9 +308,6 @@ Acompanha o teu progresso no Study AI.
 
 </section>
 
-
-<!-- ESTUDAR -->
-
 <section id="estudar" class="section">
 
 <h1>📚 Estudar</h1>
@@ -385,7 +337,6 @@ Escolhe o teu ano e a disciplina.
 
 </select>
 
-
 <label>Disciplina</label>
 
 <select id="subject">
@@ -401,18 +352,13 @@ Escolhe o teu ano e a disciplina.
 
 </select>
 
-<button class="btn" onclick="startStudy()">
-Começar a estudar
-</button>
+<button class="btn" onclick="startStudy()">Começar a estudar</button>
 
 <p id="studyMessage" class="sub"></p>
 
 </div>
 
 </section>
-
-
-<!-- DESAFIOS -->
 
 <section id="desafios" class="section">
 
@@ -428,23 +374,15 @@ Responde corretamente para ganhar pontos.
 Quanto é 8 × 7?
 </div>
 
-<input
-id="answer"
-type="number"
-placeholder="Escreve a resposta">
+<input id="answer" type="number" placeholder="Escreve a resposta">
 
-<button class="btn" onclick="checkAnswer()">
-Responder
-</button>
+<button class="btn" onclick="checkAnswer()">Responder</button>
 
 <p id="result"></p>
 
 </div>
 
 </section>
-
-
-<!-- STUDY AI -->
 
 <section id="ai" class="section">
 
@@ -456,13 +394,9 @@ O teu assistente de estudo.
 
 <div class="card">
 
-<input
-id="question"
-placeholder="Escreve a tua pergunta...">
+<input id="question" placeholder="Escreve a tua pergunta...">
 
-<button class="btn" onclick="askAI()">
-Perguntar
-</button>
+<button class="btn" onclick="askAI()">Perguntar</button>
 
 <p id="aiResponse" class="sub"></p>
 
@@ -474,9 +408,6 @@ A interface está preparada para receber uma ligação a um serviço de IA real.
 
 </section>
 
-
-<!-- MÚSICA -->
-
 <section id="musica" class="section">
 
 <h1>🎵 Biblioteca de Música</h1>
@@ -487,190 +418,73 @@ Música para estudar, concentrar e relaxar.
 
 <div class="grid">
 
-
 <div class="card">
-
 <h3>🎧 Study Music</h3>
-
-<p>
-Música para concentração e estudo.
-</p>
+<p>Música para concentração e estudo.</p>
 
 <div class="music-buttons">
-
-<a
-class="btn"
-target="_blank"
-href="https://pixabay.com/music/search/study%20music/">
-▶️ Ouvir
-</a>
-
-<a
-class="btn secondary"
-target="_blank"
-href="https://pixabay.com/music/search/study%20music/">
-⬇️ Descarregar
-</a>
-
+<a class="btn" target="_blank" href="https://pixabay.com/music/search/study%20music/">▶️ Ouvir</a>
+<a class="btn secondary" target="_blank" href="https://pixabay.com/music/search/study%20music/">⬇️ Descarregar</a>
 </div>
-
 </div>
-
 
 <div class="card">
-
 <h3>🎹 Piano Study</h3>
-
-<p>
-Piano calmo para estudar.
-</p>
+<p>Piano calmo para estudar.</p>
 
 <div class="music-buttons">
-
-<a
-class="btn"
-target="_blank"
-href="https://pixabay.com/music/search/piano%20study/">
-▶️ Ouvir
-</a>
-
-<a
-class="btn secondary"
-target="_blank"
-href="https://pixabay.com/music/search/piano%20study/">
-⬇️ Descarregar
-</a>
-
+<a class="btn" target="_blank" href="https://pixabay.com/music/search/piano%20study/">▶️ Ouvir</a>
+<a class="btn secondary" target="_blank" href="https://pixabay.com/music/search/piano%20study/">⬇️ Descarregar</a>
 </div>
-
 </div>
-
 
 <div class="card">
-
 <h3>🌙 Lofi Study</h3>
-
-<p>
-Lofi para concentração.
-</p>
+<p>Lofi para concentração.</p>
 
 <div class="music-buttons">
-
-<a
-class="btn"
-target="_blank"
-href="https://pixabay.com/music/search/lofi%20study/">
-▶️ Ouvir
-</a>
-
-<a
-class="btn secondary"
-target="_blank"
-href="https://pixabay.com/music/search/lofi%20study/">
-⬇️ Descarregar
-</a>
-
+<a class="btn" target="_blank" href="https://pixabay.com/music/search/lofi%20study/">▶️ Ouvir</a>
+<a class="btn secondary" target="_blank" href="https://pixabay.com/music/search/lofi%20study/">⬇️ Descarregar</a>
 </div>
-
 </div>
-
 
 <div class="card">
-
 <h3>📖 Study Session</h3>
-
-<p>
-Música para uma sessão de estudo.
-</p>
+<p>Música para uma sessão de estudo.</p>
 
 <div class="music-buttons">
-
-<a
-class="btn"
-target="_blank"
-href="https://pixabay.com/music/search/study%20session/">
-▶️ Ouvir
-</a>
-
-<a
-class="btn secondary"
-target="_blank"
-href="https://pixabay.com/music/search/study%20session/">
-⬇️ Descarregar
-</a>
-
+<a class="btn" target="_blank" href="https://pixabay.com/music/search/study%20session/">▶️ Ouvir</a>
+<a class="btn secondary" target="_blank" href="https://pixabay.com/music/search/study%20session/">⬇️ Descarregar</a>
 </div>
-
 </div>
-
 
 <div class="card">
-
 <h3>🎷 Jazz Study</h3>
-
-<p>
-Jazz instrumental para estudar.
-</p>
+<p>Jazz instrumental para estudar.</p>
 
 <div class="music-buttons">
-
-<a
-class="btn"
-target="_blank"
-href="https://pixabay.com/music/search/jazz%20study/">
-▶️ Ouvir
-</a>
-
-<a
-class="btn secondary"
-target="_blank"
-href="https://pixabay.com/music/search/jazz%20study/">
-⬇️ Descarregar
-</a>
-
+<a class="btn" target="_blank" href="https://pixabay.com/music/search/jazz%20study/">▶️ Ouvir</a>
+<a class="btn secondary" target="_blank" href="https://pixabay.com/music/search/jazz%20study/">⬇️ Descarregar</a>
 </div>
-
 </div>
-
 
 <div class="card">
-
 <h3>🌧️ Rain Music</h3>
-
-<p>
-Sons de chuva e ambiente.
-</p>
+<p>Sons de chuva e ambiente.</p>
 
 <div class="music-buttons">
-
-<a
-class="btn"
-target="_blank"
-href="https://pixabay.com/music/search/rain%20music/">
-▶️ Ouvir
-</a>
-
-<a
-class="btn secondary"
-target="_blank"
-href="https://pixabay.com/music/search/rain%20music/">
-⬇️ Descarregar
-</a>
-
+<a class="btn" target="_blank" href="https://pixabay.com/music/search/rain%20music/">▶️ Ouvir</a>
+<a class="btn secondary" target="_blank" href="https://pixabay.com/music/search/rain%20music/">⬇️ Descarregar</a>
 </div>
-
 </div>
 
 </div>
 
 <p class="note">
-Os botões abrem a biblioteca correspondente. Escolhe uma faixa e confirma a licença apresentada para essa faixa antes de a utilizares dentro da aplicação.
+Os botões abrem a biblioteca correspondente. Confirma a licença da faixa antes de a utilizares dentro da aplicação.
 </p>
 
 </section>
-
-
-<!-- SETTINGS -->
 
 <section id="settings" class="section">
 
@@ -694,14 +508,12 @@ Repor progresso
 
 </main>
 
-
 <script>
 
-let data = JSON.parse(
-localStorage.getItem("studyAI") ||
+let data=JSON.parse(
+localStorage.getItem("studyAI")||
 '{"points":0,"done":0}'
 );
-
 
 function save(){
 
@@ -714,47 +526,32 @@ updateProgress();
 
 }
 
-
 function updateProgress(){
 
-document.getElementById("points").textContent =
-data.points;
+document.getElementById("points").textContent=data.points;
 
-document.getElementById("done").textContent =
-data.done;
+document.getElementById("done").textContent=data.done;
 
-let level =
-Math.floor(data.points / 100) + 1;
+let level=Math.floor(data.points/100)+1;
 
-document.getElementById("level").textContent =
-level;
+document.getElementById("level").textContent=level;
 
-let progress =
-data.points % 100;
+let progress=data.points%100;
 
-document.getElementById("progressBar").style.width =
-progress + "%";
+document.getElementById("progressBar").style.width=
+progress+"%";
 
 }
 
-
 function showSection(id,button){
 
-document
-.querySelectorAll(".section")
-.forEach(section =>
-section.classList.remove("active")
-);
+document.querySelectorAll(".section")
+.forEach(section=>section.classList.remove("active"));
 
-document
-.getElementById(id)
-.classList.add("active");
+document.getElementById(id).classList.add("active");
 
-document
-.querySelectorAll("nav button")
-.forEach(btn =>
-btn.classList.remove("active")
-);
+document.querySelectorAll("nav button")
+.forEach(btn=>btn.classList.remove("active"));
 
 if(button){
 button.classList.add("active");
@@ -764,82 +561,70 @@ window.scrollTo(0,0);
 
 }
 
-
 function startStudy(){
 
-let year =
-document.getElementById("year").value;
+let year=document.getElementById("year").value;
 
-let subject =
-document.getElementById("subject").value;
+let subject=document.getElementById("subject").value;
 
-document.getElementById("studyMessage").textContent =
+document.getElementById("studyMessage").textContent=
 `Preparado para estudar ${subject} — ${year}.`;
 
 }
 
-
 function checkAnswer(){
 
-let answer =
-document.getElementById("answer").value;
+let answer=document.getElementById("answer").value;
 
-let result =
-document.getElementById("result");
+let result=document.getElementById("result");
 
-if(answer === "56"){
+if(answer==="56"){
 
-result.textContent =
-"✅ Correto! Ganhaste 10 pontos!";
+result.textContent="✅ Correto! Ganhaste 10 pontos!";
 
-data.points += 10;
+data.points+=10;
 
-data.done += 1;
+data.done+=1;
 
 save();
 
 }else{
 
-result.textContent =
-"❌ Não está correto. Tenta novamente!";
+result.textContent="❌ Não está correto. Tenta novamente!";
 
 }
 
 }
-
 
 function askAI(){
 
-let question =
-document.getElementById("question").value.trim();
+let question=document.getElementById("question").value.trim();
 
 if(!question){
 
-document.getElementById("aiResponse").textContent =
+document.getElementById("aiResponse").textContent=
 "Escreve primeiro uma pergunta.";
 
 return;
 
 }
 
-document.getElementById("aiResponse").textContent =
+document.getElementById("aiResponse").textContent=
 `Pergunta recebida: "${question}". A ligação à IA real será adicionada nesta área.`;
 
 }
 
-
 function resetProgress(){
 
-data.points = 0;
+data.points=0;
 
-data.done = 0;
+data.done=0;
 
 save();
 
 alert("O progresso foi reposto.");
 
 }
-
 
 updateProgress();
 
